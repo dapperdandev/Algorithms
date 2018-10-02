@@ -23,16 +23,15 @@ namespace LinearSearch
 
         private static int LinearSearch<T>(List<T> list, T target)
         {
-            int result = -1;
             for (int i = 0; i < list.Count; i++)
             {
                 if (EqualityComparer<T>.Default.Equals(list[i], target))
                 {
-                    result = i;
+                    return i;
                 }
             }
 
-            return result;
+            return -1;
         }
     }
 }

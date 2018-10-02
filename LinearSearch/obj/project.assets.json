@@ -670,11 +670,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\daniel\\Development\\Treehouse\\TreehouseAlgorithms\\LinearSearch\\LinearSearch.csproj",
+      "projectUniqueName": "c:\\Users\\daniel\\Development\\Treehouse\\Algorithms\\LinearSearch\\LinearSearch.csproj",
       "projectName": "LinearSearch",
-      "projectPath": "C:\\Users\\daniel\\Development\\Treehouse\\TreehouseAlgorithms\\LinearSearch\\LinearSearch.csproj",
+      "projectPath": "c:\\Users\\daniel\\Development\\Treehouse\\Algorithms\\LinearSearch\\LinearSearch.csproj",
       "packagesPath": "C:\\Users\\daniel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\daniel\\Development\\Treehouse\\TreehouseAlgorithms\\LinearSearch\\obj\\",
+      "outputPath": "c:\\Users\\daniel\\Development\\Treehouse\\Algorithms\\LinearSearch\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

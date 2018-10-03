@@ -2,6 +2,7 @@ using NUnit.Framework;
 
 namespace Algorithms.Search.Tests
 {
+    [TestFixture]
     public class LinearSearchTests
     {
         private readonly int[] _intArray;

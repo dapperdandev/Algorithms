@@ -29,5 +29,27 @@ namespace Algorithms.Sort
 
             return sortedList;
         }
+
+        public static int[] Sort(int[] arr)
+        {
+            for (var i = 0; i < arr.Length; i++)
+            {
+                var minIndex = i;
+
+                for (var j = i; j < arr.Length; j++)
+                {
+                    if (arr[j] < arr[minIndex])
+                    {
+                        minIndex = j;
+                    }
+                }
+
+                var temp = arr[i];
+                arr[i] = arr[minIndex];
+                arr[minIndex] = temp;
+            }
+
+            return arr;
+        }
     }
 }

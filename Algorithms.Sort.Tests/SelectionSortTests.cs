@@ -8,7 +8,7 @@ namespace Algorithms.Sort.Tests
     public class SelectionSortTests
     {
         [Test]
-        public void Sort_UnsortedIntegerArray()
+        public void Sort_UnsortedIntegerList()
         {
             var unsortedList = new List<int> { 8, 1, 6, 5, 6, 5, 5, 2 };
             var sortedList = new List<int>(unsortedList);
@@ -22,7 +22,7 @@ namespace Algorithms.Sort.Tests
         }
 
         [Test]
-        public void Sort_SortedIntegerArray()
+        public void Sort_SortedIntegerList()
         {
             var sortedList = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             var result = SelectionSort.Sort(sortedList);
@@ -32,13 +32,27 @@ namespace Algorithms.Sort.Tests
         }
 
         [Test]
-        public void Sort_EqualIntegerArray()
+        public void Sort_EqualIntegerList()
         {
             var equalList = new List<int> { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
             var result = SelectionSort.Sort(equalList);
 
             Assert.AreEqual(result, equalList);
             Assert.AreEqual(result.Count, equalList.Count);
+        }
+
+        [Test]
+        public void Sort_UnsortedIntegerArray()
+        {
+            var unsortedArray = new int[] { 8, 1, 6, 5, 6, 5, 5, 2 };
+            var result = SelectionSort.Sort(unsortedArray);
+            var sortedArray = new int[unsortedArray.Length];
+            
+            unsortedArray.CopyTo(sortedArray, 0);
+            Array.Sort(sortedArray);
+
+            Assert.AreEqual(result, sortedArray);
+            Assert.AreEqual(result.Length, unsortedArray.Length);
         }
     }
 }

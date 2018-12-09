@@ -5,7 +5,7 @@ namespace Algorithms.Search
 
     public class LinearSearch
     {
-        public static int Search(int[] source, int target)
+        public static int? Search(int[] source, int target)
         {
             for (int i = 0; i < source.Length; i++)
             {
@@ -15,10 +15,10 @@ namespace Algorithms.Search
                 }
             }
 
-            return -1;
+            return null;
         }
 
-        public static int GenericSearch<T>(T[] source, T target)
+        public static int? GenericSearch<T>(T[] source, T target)
         {
             for (int i = 0; i < source.Length; i++)
             {
@@ -28,7 +28,7 @@ namespace Algorithms.Search
                 }
             }
 
-            return -1;
+            return null;
         }
     }
 

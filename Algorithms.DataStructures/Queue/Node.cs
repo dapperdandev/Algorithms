@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Algorithms.DataStructures
+namespace Algorithms.DataStructures.Queue
 {
     public class Node<T>
     {
-        public T Data { get; set; }
+        public T Value {get; private set;}
+
         public Node<T> Next { get; set; }
 
-        public Node (T data)
+        public Node(T value)
         {
-            Data = data;
+            Value = value;
             Next = null;
         }
-
     }
 }

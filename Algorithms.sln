@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algorithms.Sort", "Algorith
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algorithms.Sort.Tests", "Algorithms.Sort.Tests\Algorithms.Sort.Tests.csproj", "{AF4FB9F1-398D-4F1F-A6E5-861769932E81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms.DataStructures", "Algorithms.DataStructures\Algorithms.DataStructures.csproj", "{AECBEF9A-32AC-4B45-A78F-BD8B102D4352}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algorithms.DataStructures", "Algorithms.DataStructures\Algorithms.DataStructures.csproj", "{AECBEF9A-32AC-4B45-A78F-BD8B102D4352}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms.DataStructures.Tests", "Algorithms.DataStructures.Tests\Algorithms.DataStructures.Tests.csproj", "{04922F91-2BD3-452F-ADD2-CE85B4360294}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algorithms.DataStructures.Tests", "Algorithms.DataStructures.Tests\Algorithms.DataStructures.Tests.csproj", "{04922F91-2BD3-452F-ADD2-CE85B4360294}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

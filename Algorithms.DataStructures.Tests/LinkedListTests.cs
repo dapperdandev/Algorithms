@@ -53,6 +53,108 @@ namespace Algorithms.DataStructures.Tests
         }
 
         [TestCase(1, 2, 3)]
+        public void InsertAfter_ListWithOneNode_HasPointers(int first, int second, int third)
+        {
+            _linkedList.AddFirst(first);
+            _linkedList.AddAfter(first, second);
+
+            Assert.AreEqual(_linkedList.Head.Value, first);
+            Assert.AreEqual(_linkedList.Tail.Value, second);
+            Assert.AreEqual(_linkedList.Head.Next.Value, second);
+            Assert.AreEqual(_linkedList.Tail.Previous.Value, first);
+        }
+
+        [TestCase(1, 2, 3, 4)]
+        public void InsertAfter_ListWithManyNodes_HasPointers(int first, int second, int third, int fourth)
+        {
+            _linkedList.AddLast(first);
+            _linkedList.AddLast(second);
+            _linkedList.AddLast(third);
+            _linkedList.AddAfter(second, fourth);
+
+            Assert.AreEqual(_linkedList.Head.Value, first);
+            Assert.AreEqual(_linkedList.Head.Next.Next.Value, fourth);
+            Assert.AreEqual(_linkedList.Head.Next.Value, second);
+            Assert.AreEqual(_linkedList.Tail.Previous.Value, fourth);
+            Assert.AreEqual(_linkedList.Tail.Value, third);
+        }
+
+        [TestCase(1, 2, 3)]
+        public void InsertAfter_EmptyList_DoesNothing(int first, int second, int third)
+        {
+            _linkedList.AddAfter(first, second);
+
+            Assert.IsNull(_linkedList.Head);
+            Assert.IsNull(_linkedList.Tail);
+            Assert.IsTrue(_linkedList.IsEmpty);
+        }
+
+        [TestCase(1, 2, 3)]
+        public void InsertAfter_InvalidNode_DoesNothing(int first, int second, int third)
+        {
+            _linkedList.AddLast(first);
+            _linkedList.AddLast(second);
+            _linkedList.AddAfter(third, third);
+
+            var result = _linkedList.Find(third);
+
+            Assert.AreEqual(_linkedList.Head.Value, first);
+            Assert.AreEqual(_linkedList.Tail.Value, second);
+            Assert.IsNull(result);
+        }
+
+        [TestCase(1, 2, 3)]
+        public void InsertBefore_ListWithOneNode_HasPointers(int first, int second, int third)
+        {
+            _linkedList.AddFirst(first);
+            _linkedList.AddBefore(first, second);
+
+            Assert.AreEqual(_linkedList.Head.Value, second);
+            Assert.AreEqual(_linkedList.Tail.Value, first);
+            Assert.AreEqual(_linkedList.Head.Next.Value, first);
+            Assert.AreEqual(_linkedList.Tail.Previous.Value, second);
+        }
+
+        [TestCase(1, 2, 3, 4)]
+        public void InsertBefore_ListWithManyNodes_HasPointers(int first, int second, int third, int fourth)
+        {
+            _linkedList.AddLast(first);
+            _linkedList.AddLast(second);
+            _linkedList.AddLast(third);
+            _linkedList.AddBefore(third, fourth);
+
+            Assert.AreEqual(_linkedList.Head.Value, first);
+            Assert.AreEqual(_linkedList.Head.Next.Next.Value, fourth);
+            Assert.AreEqual(_linkedList.Head.Next.Value, second);
+            Assert.AreEqual(_linkedList.Tail.Previous.Value, fourth);
+            Assert.AreEqual(_linkedList.Tail.Value, third);
+        }
+
+        [TestCase(1, 2, 3)]
+        public void InsertBefore_EmptyList_DoesNothing(int first, int second, int third)
+        {
+            _linkedList.AddBefore(first, second);
+
+            Assert.IsNull(_linkedList.Head);
+            Assert.IsNull(_linkedList.Tail);
+            Assert.IsTrue(_linkedList.IsEmpty);
+        }
+
+        [TestCase(1, 2, 3)]
+        public void InsertBefore_InvalidNode_DoesNothing(int first, int second, int third)
+        {
+            _linkedList.AddLast(first);
+            _linkedList.AddLast(second);
+            _linkedList.AddBefore(third, third);
+
+            var result = _linkedList.Find(third);
+
+            Assert.AreEqual(_linkedList.Head.Value, first);
+            Assert.AreEqual(_linkedList.Tail.Value, second);
+            Assert.IsNull(result);
+        }
+
+        [TestCase(1, 2, 3)]
         public void RemoveFirst_RemovesPreviousFromNewHead(int first, int second, int third)
         {
             _linkedList.AddLast(first);
@@ -61,7 +163,7 @@ namespace Algorithms.DataStructures.Tests
             _linkedList.RemoveFirst();
 
             Assert.AreEqual(_linkedList.Head.Value, second);
-            Assert.AreEqual(_linkedList.Head.Previous, null);
+            Assert.IsNull(_linkedList.Head.Previous);
         }
 
         [TestCase(1, 2, 3)]
@@ -74,6 +176,82 @@ namespace Algorithms.DataStructures.Tests
             _linkedList.RemoveLast();
 
             Assert.AreEqual(_linkedList.Tail.Value, second);
+        }
+
+        [TestCase(1, 2, 3)]
+        public void RemoveBefore_ListWithMultipleNodes_RemovesCorrectNode(int first, int second, int third)
+        {
+            _linkedList.AddLast(first);
+            _linkedList.AddLast(second);
+            _linkedList.AddLast(third);
+            _linkedList.RemoveBefore(third);
+
+            Assert.AreEqual(_linkedList.Head.Value, first);
+            Assert.AreEqual(_linkedList.Tail.Value, third);
+            Assert.AreEqual(_linkedList.Head.Next.Value, third);
+            Assert.AreEqual(_linkedList.Tail.Previous.Value, first);
+        }
+
+        [TestCase(1, 2, 3)]
+        public void RemoveBefore_ListWithZeroNodes_DoesNothing(int first, int second, int third)
+        {
+            _linkedList.RemoveBefore(third);
+
+            Assert.IsNull(_linkedList.Head);
+            Assert.IsNull(_linkedList.Tail);
+            Assert.IsTrue(_linkedList.IsEmpty);
+
+        }
+
+        [TestCase(1, 2, 3)]
+        public void RemoveBefore_ListWithOneNode_DoesNothing(int first, int second, int third)
+        {
+            _linkedList.AddLast(first);
+            _linkedList.RemoveBefore(first);
+
+            Assert.AreEqual(_linkedList.Head.Value, first);
+            Assert.AreEqual(_linkedList.Tail.Value, first);
+            Assert.IsNull(_linkedList.Head.Next);
+            Assert.IsNull(_linkedList.Tail.Next);
+
+        }
+
+        [TestCase(1, 2, 3)]
+        public void RemoveAfter_ListWithMultipleNodes_RemovesCorrectNode(int first, int second, int third)
+        {
+            _linkedList.AddLast(first);
+            _linkedList.AddLast(second);
+            _linkedList.AddLast(third);
+            _linkedList.RemoveAfter(first);
+
+            Assert.AreEqual(_linkedList.Head.Value, first);
+            Assert.AreEqual(_linkedList.Tail.Value, third);
+            Assert.AreEqual(_linkedList.Head.Next.Value, third);
+            Assert.AreEqual(_linkedList.Tail.Previous.Value, first);
+        }
+
+        [TestCase(1, 2, 3)]
+        public void RemoveAfter_ListWithZeroNodes_DoesNothing(int first, int second, int third)
+        {
+            _linkedList.RemoveAfter(third);
+
+            Assert.IsNull(_linkedList.Head);
+            Assert.IsNull(_linkedList.Tail);
+            Assert.IsTrue(_linkedList.IsEmpty);
+
+        }
+
+        [TestCase(1, 2, 3)]
+        public void RemoveAfter_ListWithOneNode_DoesNothing(int first, int second, int third)
+        {
+            _linkedList.AddLast(first);
+            _linkedList.RemoveAfter(first);
+
+            Assert.AreEqual(_linkedList.Head.Value, first);
+            Assert.AreEqual(_linkedList.Tail.Value, first);
+            Assert.IsNull(_linkedList.Head.Next);
+            Assert.IsNull(_linkedList.Tail.Next);
+
         }
 
         [TestCase(1, 2, 3)]
@@ -93,7 +271,7 @@ namespace Algorithms.DataStructures.Tests
             _linkedList.AddLast(second);
             _linkedList.AddLast(third);
 
-            Assert.AreEqual(_linkedList.Find(7), null);
+            Assert.IsNull(_linkedList.Find(7));
         }
     }
 }

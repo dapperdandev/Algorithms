@@ -12,13 +12,11 @@ namespace Algorithms.DataStructures.BinarySearchTree
             var node = new Node<T>(value);
 
             if (Head == null)
-            {
                 Head = node;
-            }
             else
-            {
                 AddTo(Head, node);
-            }
+
+            Count++;
         }
 
         public void AddTo(Node<T> parent, Node<T> child)
@@ -37,6 +35,40 @@ namespace Algorithms.DataStructures.BinarySearchTree
                 else
                     AddTo(parent.RightChild, child);    
             }
+        }
+
+        public bool Contains(T value)
+        {
+            Node<T> parent;
+            return FindWithParent(value, out parent) != null;
+        }
+
+        public Node<T> FindWithParent(T value, out Node<T> parent)
+        {
+            var current = Head;
+            parent = null;
+
+            while (current != null)
+            {
+                var result = current.CompareTo(value);
+
+                if (result > 0)
+                {
+                    parent = current;
+                    current = current.LeftChild;
+                }
+                else if (result < 0)
+                {
+                    parent = current;
+                    current = current.RightChild;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return current;
         }
     }
 }

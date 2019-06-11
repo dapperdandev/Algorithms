@@ -27,10 +27,10 @@ namespace Algorithms.DataStructures.LinkedList
         public void AddFirst(T value)
         {
             /**
-             * Store Head in a temporary variable
-             * Create a new node and assign it to Head
-             * Assign the temporary variable to Head.Next
-             * Assign Head to temp.Previous or assign Tail
+             * Store Root in a temporary variable
+             * Create a new node and assign it to Root
+             * Assign the temporary variable to Root.Next
+             * Assign Root to temp.Previous or assign Tail
              * Update Tail
              */
 

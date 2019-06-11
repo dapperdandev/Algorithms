@@ -1,74 +1,70 @@
-﻿using System;
-
-namespace Algorithms.DataStructures.BinarySearchTree
+﻿namespace Algorithms.DataStructures.BinarySearchTree
 {
-    public class BinarySearchTree<T> where T : IComparable<T>
+    public class BinarySearchTree<T>
     {
-        public Node<T> Head { get; private set; }
+        public Node Root { get; private set; }
         public int Count { get; private set; }
+        public bool IsEmpty => Count == 0;
 
-        public void Add(T value)
+        public void Insert(int value)
         {
-            var node = new Node<T>(value);
-
-            if (Head == null)
-                Head = node;
+            Node newNode = new Node(value);
+            if (IsEmpty)
+            {
+                Root = newNode;
+            }
             else
-                AddTo(Head, node);
+            {
+                Node currentNode = Root;
+                bool isAdded = false;
+                while (!isAdded)
+                {
+                    if (value < currentNode.Value)
+                    {
+                        if (currentNode.LeftChild == null)
+                        {
+                            currentNode.LeftChild = newNode;
+                            isAdded = true;
+                        }
+
+                        currentNode = currentNode.LeftChild;
+                    }
+                    else
+                    {
+                        if (currentNode.RightChild == null)
+                        {
+                            currentNode.RightChild = newNode;
+                            isAdded = true;
+                        }
+
+                        currentNode = currentNode.RightChild;
+                    }
+                }
+            }
 
             Count++;
         }
 
-        public void AddTo(Node<T> parent, Node<T> child)
+        public void InsertRecursive(int value)
         {
-            if (child.Value.CompareTo(parent.Value) < 0)
-            {
-                if (parent.LeftChild == null)
-                    parent.LeftChild = child;
-                else
-                    AddTo(parent.LeftChild, child);     
-            }
+            Root = InsertRecursive(Root, value);
+            Count++;
+        }
+
+        private Node InsertRecursive(Node current, int value)
+        {
+            Node newNode = new Node(value);
+
+            if (current == null)
+                return newNode;
+
+            if (value < current.Value)
+                current.LeftChild = InsertRecursive(current.LeftChild, value);
             else
-            {
-                if (parent.RightChild == null)
-                    parent.RightChild = child;
-                else
-                    AddTo(parent.RightChild, child);    
-            }
-        }
-
-        public bool Contains(T value)
-        {
-            Node<T> parent;
-            return FindWithParent(value, out parent) != null;
-        }
-
-        public Node<T> FindWithParent(T value, out Node<T> parent)
-        {
-            var current = Head;
-            parent = null;
-
-            while (current != null)
-            {
-                var result = current.CompareTo(value);
-
-                if (result > 0)
-                {
-                    parent = current;
-                    current = current.LeftChild;
-                }
-                else if (result < 0)
-                {
-                    parent = current;
-                    current = current.RightChild;
-                }
-                else
-                {
-                    break;
-                }
-            }
+                current.RightChild = InsertRecursive(current.RightChild, value);
 
             return current;
+
         }
     }
 }

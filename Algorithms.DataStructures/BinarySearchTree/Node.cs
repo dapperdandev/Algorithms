@@ -1,25 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Algorithms.DataStructures.BinarySearchTree
+﻿namespace Algorithms.DataStructures.BinarySearchTree
 {
-    public class Node<T> : IComparable<T> where T : IComparable<T>
+    public class Node
     {
-        public T Value { get; set; }
-        public Node<T> LeftChild { get; set; }
-        public Node<T> RightChild { get; set; }
+        public int Value { get; set; }
+        public Node LeftChild { get; set; }
+        public Node RightChild { get; set; }
 
-        public Node(T value)
+        public Node(int value)
         {
             Value = value;
             LeftChild = null;
             RightChild = null;
-        }
-
-        public int CompareTo(T other)
-        {
-            return Value.CompareTo(other);
         }
     }
 }

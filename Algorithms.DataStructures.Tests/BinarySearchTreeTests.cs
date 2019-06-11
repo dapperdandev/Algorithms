@@ -8,21 +8,51 @@ namespace Algorithms.DataStructures.Tests
     public class BinarySearchTreeTests
     {
         private BinarySearchTree<int> _binarySearchTree;
-        private List<int> _values;
 
         [SetUp]
         public void Setup()
         {
             _binarySearchTree = new BinarySearchTree<int>();
-            _values = new List<int> { 4, 2, 6 , 1, 3, 5, 7};
         }
 
         [Test]
-        public void EmptyQueue_IsTrulyEmpty()
+        public void Insert_ArrangesNodesCorrectly()
         {
-            _values.ForEach(val => _binarySearchTree.Add(val));
+            List<int> values = new List<int> { 8, 4, 2, 6, 10, 20 };
+            /*
+             *                8
+             *            4      10
+             *          2   6        20
+             */
+            values.ForEach(val => _binarySearchTree.Insert(val));
 
-            Assert.IsTrue(true);
+            Assert.AreEqual(values[0], _binarySearchTree.Root.Value);
+            Assert.AreEqual(values[1], _binarySearchTree.Root.LeftChild.Value);
+            Assert.AreEqual(values[2], _binarySearchTree.Root.LeftChild.LeftChild.Value);
+            Assert.AreEqual(values[3], _binarySearchTree.Root.LeftChild.RightChild.Value);
+            Assert.AreEqual(values[4], _binarySearchTree.Root.RightChild.Value);
+            Assert.AreEqual(values[5], _binarySearchTree.Root.RightChild.RightChild.Value);
+            Assert.AreEqual(values.Count, _binarySearchTree.Count);
+        }
+
+        [Test]
+        public void InsertRecursive_ArrangesNodesCorrectly()
+        {
+            List<int> values = new List<int> { 8, 4, 2, 6, 10, 20 };
+            /*
+             *                8
+             *            4      10
+             *          2   6        20
+             */
+            values.ForEach(val => _binarySearchTree.InsertRecursive(val));
+
+            Assert.AreEqual(values[0], _binarySearchTree.Root.Value);
+            Assert.AreEqual(values[1], _binarySearchTree.Root.LeftChild.Value);
+            Assert.AreEqual(values[2], _binarySearchTree.Root.LeftChild.LeftChild.Value);
+            Assert.AreEqual(values[3], _binarySearchTree.Root.LeftChild.RightChild.Value);
+            Assert.AreEqual(values[4], _binarySearchTree.Root.RightChild.Value);
+            Assert.AreEqual(values[5], _binarySearchTree.Root.RightChild.RightChild.Value);
+            Assert.AreEqual(values.Count, _binarySearchTree.Count);
         }
     }
 }
